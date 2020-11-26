@@ -21,7 +21,7 @@ I finally got hold of a *SUN* mouse (model *Compact 1*, *SUN* no. 370-1586-03), 
 | Type 5c  | confirmed working                        |
 | Type 5   | confirmed working                        |
 | Type 4   | feedback wanted                          |
-| Type 3   | feedback wanted                          |
+| Type 3   | confirmed working, see issue #12         |
 | Integrix S5+100 (*SUN* clone) | not working, possibly PS/2 interface, details in issue #4 |
 
 
@@ -38,7 +38,9 @@ I finally settled for a *Pro Micro*, an *Arduino*-compatible board developed by 
 - *Arduino Micro* (thanks to opthomas-prime)
 - *Arduino Leonardo* (thanks to newm-newm)
 
-Whichever board you choose, make sure it's 5V, since the RS232 signals from the keyboard are 5V TTL levels! Shortly after starting this project, I also got my hands on a *Type 5* in addition to the *Type 5c* I already had. For both, I decided to put the *Arduino* into the keyboard case (had to open them for cleaning anyway). The hardware is different for both, so here's how I went about it.
+Whichever board you choose, make sure it's 5V, since the RS232 signals from the keyboard are 5V TTL levels! Shortly after starting this project, I also got my hands on a *Type 5* in addition to the *Type 5c* I already had. For both, I decided to put the *Arduino* into the keyboard case (had to open them for cleaning anyway). A word of warning though: The Micro-USB connectors on these *Arduinos* are fairly delicate, so be carefull when looking for a place where to put the board. The first time I did this with the USB cable still connected and knocked off the connector...
+
+Since the hardware of the *Type 5* and *Type 5c* is slightly different, I had to go about things somewhat differently. Here's how:
 
 ### *Type 5c*
 
