@@ -18,7 +18,7 @@
     along with suniversal. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef MOUSE_CONVERTE_h
+#ifndef MOUSE_CONVERTER_h
 #define MOUSE_CONVERTER_h
 
 #include <stdint.h>
