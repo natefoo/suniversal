@@ -61,7 +61,7 @@ Just like the keyboard, the mouse also uses an inverted serial signal, so you ne
 
 ![inverter](doc/inverter.png)
 
-If you're not planning on using the mouse, you can skip this of course. The most challenging part may be finding the right plug to connect to the PCB. I fabricated something out of a connector that had the right pitch:
+If you're not planning on using the mouse, you can skip this of course. The most challenging part may be finding the right plug to connect to the PCB. I fabricated something out of a connector that had the right pitch. Note that the wire colors in below picture are not those mentioned in the table above. This is just a random spare cable I had lying around:
 
 ![connector](doc/connector.jpg)
 
@@ -89,6 +89,21 @@ And here the mapping to the *Arduino* pins:
 |     8    | +5V      |                      |
 
 <sup>1</sup> see note in section for *Type 5c*
+
+### *Type 3* (by *hellyhot*)
+
+*hellyhot* put *suniversal* into a *Type 3* (see also issue #12). Here's an image of how the *Arduino* was hooked up:
+
+![Type 3 by hellyhot](doc/type3.jpg)
+
+| PCB pin | wire color<sup>1</sup>|function| *Arduino* pin |
+|---------|-------------|------------|---------------------|
+|     1   |    black    |   GND      |      GND            |
+|     2   |    red      |   +5V      |      Vcc            |
+|     3   |    blue     |  serial RX (from keyboard) | D10 |
+|     4   |    brown    |  serial TX (to keyboard)   | D9  |
+
+<sup>1</sup> as seen in the picture
 
 ## Software
 
