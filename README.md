@@ -4,7 +4,7 @@
 
 ## TL;DR
 
-*suniversal* is a USB adapter for *SUN Type 5* keyboards. It is developed on a *Pro Micro Arduino-*compatible board, but other boards based on the *ATmega32u4* micro-controller should work as well.
+*suniversal* is a USB adapter for non-USB *SUN* keyboards. It is developed on a *Pro Micro Arduino*-compatible board, but other boards based on the *ATmega32u4* micro-controller should work as well.
 
 #### What's New
 I finally got hold of a *SUN* mouse (model *Compact 1*, *SUN* no. 370-1586-03), so I could test and adapt my initial implementation for mouse support.
@@ -18,6 +18,7 @@ I finally got hold of a *SUN* mouse (model *Compact 1*, *SUN* no. 370-1586-03), 
 #### Compatibility
 | keyboard | status                                   |
 |----------|------------------------------------------|
+| Type 6   | feedback wanted                          |
 | Type 5c  | confirmed working                        |
 | Type 5   | confirmed working                        |
 | Type 4   | feedback wanted                          |
