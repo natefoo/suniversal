@@ -21,9 +21,9 @@
 #ifndef SUN_TO_USB_h
 #define SUN_TO_USB_h
 
-#include "config.h"
 #include "usb_codes.h"
 #include "macros.h"
+#include "config.h"
 
 #if USE_MACROS == true
 #define CODE_OR_MACRO(C, M) (0xFF00 + (M))
@@ -73,7 +73,7 @@ static const uint16_t sun2usb[128] = {
 /*  0x0C    F5              */  USB_F5,
 /*  0x0D    GraphAlt        */  USB_MOD_RALT << 8,
 /*  0x0E    F6              */  USB_F6,
-/*  0x0F                    */  0,
+/*  0x0F                    */  BLANK_KEY_USB_CODE,
 /*  0x10    F7              */  USB_F7,
 /*  0x11    F8              */  USB_F8,
 /*  0x12    F9              */  USB_F9,
