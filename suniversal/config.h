@@ -41,6 +41,17 @@
 //
 #define COMPOSE_MODE false
 
+// Set whether the state of the compose LED should be controlled by the host
+// (true). If this does not work (depending on the host OS, the compose LED may
+// be kept off all the time), set this to false to let suniversal control the
+// LED.
+#define COMPOSE_LED_HOST_CONTROLLED true
+
+
+// Set the USB key code sent by the unlabeled key to the left of F1 on Type 5/6
+// keyboards with the UNIX layout. The default is to send the same code as Esc,
+// to match ISO/IBM layouts. When set to 0, the key will not function over USB.
+#define BLANK_KEY_USB_CODE USB_ESC
 
 // Set whether to have the keyboard blink & beep at start up.
 //

@@ -1,13 +1,15 @@
+**WARNING: THIS REPOSITORY IS A CLONE AND I AM NOT THE AUTHOR.** The original can be found at
+[https://codeberg.org/xelalexv/suniversal](https://codeberg.org/xelalexv/suniversal).
 
 # *suniversal*
 
 
 ## TL;DR
 
-*suniversal* is a USB adapter for *SUN Type 5* keyboards. It is developed on a *Pro Micro Arduino-*compatible board, but other boards based on the *ATmega32u4* micro-controller should work as well.
+*suniversal* is a USB adapter for non-USB *SUN* keyboards. It is developed on a *Pro Micro Arduino*-compatible board, but other boards based on the *ATmega32u4* micro-controller should work as well.
 
 #### What's New
-I finally got hold of a *SUN* mouse (model *Compact 1*, *SUN* no. 370-1586-03), so I could test and adapt my initial implementation for mouse support.
+I finally got hold of a *SUN Type 4* and confirmed it working.
 
 #### Features
 - all keys working
@@ -18,10 +20,12 @@ I finally got hold of a *SUN* mouse (model *Compact 1*, *SUN* no. 370-1586-03), 
 #### Compatibility
 | keyboard | status                                   |
 |----------|------------------------------------------|
+| Type 6   | feedback wanted                          |
 | Type 5c  | confirmed working                        |
 | Type 5   | confirmed working                        |
-| Type 4   | feedback wanted                          |
-| Type 3   | feedback wanted                          |
+| Type 4   | confirmed working                        |
+| Type 3   | confirmed working, see issue #12         |
+| Integrix S5+100 (*SUN* clone) | not working, possibly PS/2 interface, details in issue #4 |
 
 
 ## Background
@@ -35,8 +39,11 @@ I finally settled for a *Pro Micro*, an *Arduino*-compatible board developed by 
 
 - *Sparkfun Pro Micro* (used by myself)
 - *Arduino Micro* (thanks to opthomas-prime)
+- *Arduino Leonardo* (thanks to newm-newm)
 
-Whichever board you choose, make sure it's 5V, since the RS232 signals from the keyboard are 5V TTL levels! Shortly after starting this project, I also got my hands on a *Type 5* in addition to the *Type 5c* I already had. For both, I decided to put the *Arduino* into the keyboard case (had to open them for cleaning anyway). The hardware is different for both, so here's how I went about it.
+Whichever board you choose, make sure it's 5V, since the RS232 signals from the keyboard are 5V TTL levels! Shortly after starting this project, I also got my hands on a *Type 5* in addition to the *Type 5c* I already had. For both, I decided to put the *Arduino* into the keyboard case (had to open them for cleaning anyway). A word of warning though: The Micro-USB connectors on these *Arduinos* are fairly delicate, so be carefull when looking for a place where to put the board. The first time I did this with the USB cable still connected and knocked off the connector...
+
+Since the hardware of the *Type 5* and *Type 5c* is slightly different, I had to go about things somewhat differently. Here's how:
 
 ### *Type 5c*
 
@@ -53,11 +60,11 @@ The original cable can be unplugged from the keyboard's PCB, so it's easy to rev
 <sup>1</sup> as found on a *Type 5c* keyboard, may differ depending on model & year
 
 #### <sup>2</sup> Inverter for Mouse Signal
-Just like the keyboard, the mouse also uses an inverted serial signal, so you need an inverter in the line between the mouse and RX of the *Arduino*, e.g. a transistor and two resistors. This is because unlike the `SoftwareSerial` we're using for the keyboard, the H/W serial of the *Arduino* cannot be configured to invert signals. Alternatively, maybe a second `SoftwareSerial` could be used, but I was under the impression that only one would work at a time. Let me know if that's not so.
+Just like the keyboard, the mouse also uses an inverted serial signal, so you need an inverter in the line between the mouse and RX of the *Arduino*, e.g. a transistor (2N2222, BC547 or similar will do) and two resistors. This is because unlike the `SoftwareSerial` we're using for the keyboard, the H/W serial of the *Arduino* cannot be configured to invert signals. Alternatively, maybe a second `SoftwareSerial` could be used, but I was under the impression that only one would work at a time. Let me know if that's not so.
 
 ![inverter](doc/inverter.png)
 
-If you're not planning on using the mouse, you can skip this of course. The most challenging part may be finding the right plug to connect to the PCB. I fabricated something out of a connector that had the right pitch:
+If you're not planning on using the mouse, you can skip this of course. The most challenging part may be finding the right plug to connect to the PCB. I fabricated something out of a connector that had the right pitch. Note that the wire colors in below picture are not those mentioned in the table above. This is just a random spare cable I had lying around:
 
 ![connector](doc/connector.jpg)
 
@@ -85,6 +92,25 @@ And here the mapping to the *Arduino* pins:
 |     8    | +5V      |                      |
 
 <sup>1</sup> see note in section for *Type 5c*
+
+### *Type 4*
+
+This is similar to *Type 5c*. There's an identical connector on the solder side of the PCB.
+
+### *Type 3* (by *hellyhot*)
+
+*hellyhot* put *suniversal* into a *Type 3* (see also issue #12). Here's an image of how the *Arduino* was hooked up:
+
+![Type 3 by hellyhot](doc/type3.jpg)
+
+| PCB pin | wire color<sup>1</sup>|function| *Arduino* pin |
+|---------|-------------|------------|---------------------|
+|     1   |    black    |   GND      |      GND            |
+|     2   |    red      |   +5V      |      Vcc            |
+|     3   |    blue     |  serial RX (from keyboard) | D10 |
+|     4   |    brown    |  serial TX (to keyboard)   | D9  |
+
+<sup>1</sup> as seen in the picture
 
 ## Software
 
@@ -126,6 +152,8 @@ There are a few settings you can make in `config.h`, the more interesting ones b
     ```
 
     Replace the vendor IDs with the ones from your board. Then, run `sudo udevadm trigger`.
+
+    What may also help on Linux systems is disabling or removing the `modemmanager` package, as it seems to interfere with the *Arduino*'s serial port.
 
 
 ## Contributing
