@@ -30,8 +30,10 @@
 #include "mouse.h"
 
 // Arduino pins
+//#define PIN_RX 10
+//#define PIN_TX  9
 #define PIN_RX 10
-#define PIN_TX  9
+#define PIN_TX 11
 
 // SUN power key
 #define POWER            0x30
