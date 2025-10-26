@@ -1,3 +1,5 @@
+**WARNING: THIS REPOSITORY IS A CLONE AND I AM NOT THE AUTHOR.** The original can be found at
+[https://codeberg.org/xelalexv/suniversal](https://codeberg.org/xelalexv/suniversal).
 
 # *suniversal*
 
